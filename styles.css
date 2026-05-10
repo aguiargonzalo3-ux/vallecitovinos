@@ -4,23 +4,89 @@ body {
     background-color: rgba(114, 47, 55, 0.8); 
     margin: 0;
     padding: 0;
-    /*opacidad el fondo*/
+}
+
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  max-width: 250px;   /* Un ancho cómodo */
+  margin-left: auto;  /* Esto lo empuja a la derecha */
+  margin-right: 30px; /* Un pequeño margen para que no toque el borde del monitor */
+  margin-top: 30px;   /* Ajusta esto para bajarlo un poco si hace falta */
+}
+
+.input {
+ /* width: 100%; */
+ height: 40px;
+ line-height: 28px;
+ padding: 0 1rem;
+ padding-left: 1rem;
+ padding-right: 2.5rem;
+ text-align: center;
+ border: 1px solid rgba(255, 255, 255, 0.2);
+ border-radius: 50px;
+ outline: none;
+ background-color: #f3f3f4;
+ color: #0d0c22;
+ transition: .3s ease;
+}
+.icon {
+ position: absolute;
+ left: 10px;
+ top: 12px;
+ fill: #9e9ea7;
+ pointer-events: none;
+ width: 1rem;
+ height: 1rem;
+}
+.input::placeholder {
+ color: #9e9ea7;
+}
+
+.input:focus, input:hover {
+ outline: none;
+ border-color: rgba(234,76,137,0.4);
+ background-color: #fff;
+ box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+}
+
+
+.encabezado {
+    display: flex;
+    justify-content: space-between; /* El logo a un lado, el nav al otro */
+    align-items: center; 
+    padding: 10px 50px; /* Bajé el padding lateral para que no se apreten tanto */
+}
+
+/* HIJO 1: El Contenedor del Logo */
+.div1 {
+    flex: 1; /* Esto hace que el contenedor ocupe espacio y el logo se quede a la izquierda */
+}
+
+.logovallecito {
+  width: 200px;
+  height: 200px;  
+
+}
+/* HIJO 2: El Contenedor del Nav */
+.div2 {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    position: relative;
+    margin-top: -245px; 
+    right: 300px;
 }
 .nav {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    /* Para mix-blend-mode, un fondo muy sutil o transparente funciona mejor */
-    background: rgba(240, 235, 235, 0.05); 
-    backdrop-filter: blur(10px); 
-    padding: 10px 20px;
-    border-radius: 50px; 
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    width: fit-content;
-    margin: 20px auto; 
-    position: sticky;
-    top: 20px; 
-    z-index: 1000;
+    position: fixed; /* Cambiamos sticky por fixed solo para ver si el problema es la posición */
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    /* ... tus otros estilos ... */
 }
 
 .nav a {
@@ -37,13 +103,12 @@ body {
         0 0 10px rgba(0, 0, 0, 0.5);
         /*magia para que no se pierda el nav con el fondo blanco*/
 }
-.nav {
-    /*fondo un poco más sólido para ayudar al contraste */
-    background: rgba(0, 0, 0, 0.4); 
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-
+.nav a:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
+
+
 .grid{
 display: grid;
 grid-template-columns: 1fr;
@@ -57,23 +122,38 @@ grid-row-gap: 15px;
     display: flex;
     flex-direction: column; /* Alinea los elementos verticalmente */
     align-items: center;    /* Centra las imágenes horizontalmente */
-    gap: 10px;              /* Espacio entre cada imagen */
+    gap: 22px;              /* Espacio entre cada imagen */
+   
 }
 
 .img img {
-    width: 200%;            /* Ocupa el ancho del contenedor */
-    max-width: 600px;       /* Pero con un límite para que no sean gigantes */
+    width: 100%;           /* Generalmente 100% es suficiente si el padre tiene tamaño */
+    max-width: 600px;
     height: auto;
+    
+    /* CONTROL DE LA ANIMACIÓN */
+    transition: transform 0.5s ease; /* 's' de segundos, no 'ms' */
+    transform: scale(1.0);           /* Tamaño original */
 }
+
+/* EFECTO AL PASAR EL CURSOR */
+.img img:hover {
+    transform: scale(1.1); /* Se agranda un 10%. (1.4 quizás es mucho y se pixela) */
+    cursor: pointer;
+}
+
 .card {
   display: flex;
   height: 40px;
   width: 170px;
+  flex-direction: column;
+  gap: 15px; 
+  transform: translateY(-30px);
 }
 
 .card svg {
-  position: absolute;
-  display: flex;
+  position: static;
+  display: block;
   width: 60%;
   height: 100%;
   font-size: 24px;
@@ -138,17 +218,158 @@ grid-row-gap: 15px;
 }
 
 .piedepagina {
-    text-align: right;
-    border-top: 1px solid #ddd; /* Crea una línea sutil */
-    padding-top: 30px;
+    display: flex;
+    flex-direction: column;    /* Título arriba, Iconos en el medio, Copy abajo */
+    align-items: flex-start;   /* Alinea todo a la izquierda por defecto */
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 60px 10% 30px 10%;
     margin-top: 60px;
-    padding:30px;
-    color: #050505;
-    font-size: 1rem;
+    
+    /* Fondo con imagen y filtro vino tinto */
+    background: linear-gradient(rgba(114, 47, 55, 0.8), rgba(114, 47, 55, 0.8)), 
+                url("vinedo-cafayate.jpg");
+    background-size: cover;       
+    background-position: center;  
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    
+    width: 100%;
+    box-sizing: border-box;    /* Evita que el padding ensanche de más el footer */
+}
+.copy {
+    align-self: center; /* Se centra a sí mismo ignorando el 'flex-start' del padre */
+    margin: 0;
+    width: 100%; /* Asegura que el texto tenga espacio para centrarse */
+    text-align: center
+
 }
 h2 {
-color: #050505;
+color: #000000;
+font-weight: normal;
+font-family: 'Times New Roman', Times, serif;
 font-size: 1rem;
 text-align: left;
 padding: 10px;
 }
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+/* Oculto checkbox y el icono de hamburguesa */
+.menu-checkbox, .hamburguesa {
+    display: none;
+}
+/* --- TABLET / LAPTOP (1024px) --- */
+@media (max-width: 1024px) {
+    .encabezado {
+        flex-direction: column; /* Apilamos para que el logo tenga su espacio y el nav el suyo */
+        padding: 20px 0;        /* Ajustamos el aire arriba y abajo */
+        gap: 30px;              /* Espacio de separación entre logo y nav */
+    }
+
+    .div1, .div2 {
+        width: 100%;            /* Ocupan todo el ancho para poder centrarse */
+        display: flex;
+        justify-content: center; /* Centramos el logo y el nav horizontalmente */
+        position: static;        /* Eliminamos cualquier rastro de position: relative o absolute */
+        margin: 0;               /* Limpiamos márgenes que puedan quedar de la versión PC */
+    }
+
+    .logovallecito {
+        width: 150px;           /* Reducimos un poco el logo para que no sea tan invasivo */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+
+    }
+
+    .nav {
+        /* Mantenemos el estilo simple pero aseguramos que se vea bien */
+        margin: 0 auto; 
+        gap: 12px;              /* Reducimos ligeramente el espacio entre botones */
+    }
+     .group {
+    max-width: 40%;      /* Le damos un ancho relativo para que no toque los bordes */
+    margin-left: auto;   /* Estos dos "auto" juntos centran el bloque horizontalmente */
+    margin-right: auto;
+    margin-top: 100px;    /* Espacio respecto a lo que tenga arriba */
+}
+.input {
+    width: 100%;         /* Hacemos que el input ocupe todo el ancho del contenedor .group */
+    box-sizing: border-box; /* Evita que el padding ensanche el input más de la cuenta */
+}
+}
+
+/* --- CELULAR (650px) --- */
+
+
+@media (max-width: 650px) {
+  .group {
+    max-width: 80%;      /* Le damos un ancho relativo para que no toque los bordes */
+    margin-left: auto;   /* Estos dos "auto" juntos centran el bloque horizontalmente */
+    margin-right: auto;
+    margin-top: 20px;    /* Espacio respecto a lo que tenga arriba */
+}
+
+.input {
+    width: 100%;         /* Hacemos que el input ocupe todo el ancho del contenedor .group */
+    box-sizing: border-box; /* Evita que el padding ensanche el input más de la cuenta */
+}
+    /* Mostramos el icono de hamburguesa */
+   .hamburguesa {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 100;
+        /* Quitamos el absolute y los márgenes fijos para que el flex lo centre */
+        position: static; 
+        transform: none;
+    }
+
+    .hamburguesa span {
+        width: 30px;
+        height: 4px;
+        background-color: white;
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+
+    /* Escondemos el menú original y lo preparamos para ser vertical */
+   .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px; /* Ajusta según la distancia que quieras del icono */
+        left: 50%;
+        transform: translateX(-50%); /* Truco para centrar un elemento absoluto */
+        background: rgba(114, 47, 55, 0.98);
+        width: 85%; /* Un ancho más cómodo para celular */
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        /* ... tus otros estilos ... */
+    }
+.nav a {
+        width: 100%;
+        text-align: center;
+    }
+    /* CUANDO EL CHECKBOX ESTÁ MARCADO: Mostramos el menú */
+    .menu-checkbox:checked ~ .nav {
+        display: flex;
+    }
+
+    /* Ajustes visuales para los links en celular */
+    
+
+    /* Ajustes para el grid de imágenes y footer */
+    .img img {
+        max-width: 90%; /* Que no toque los bordes del cel */
+    }
+
+    .piedepagina {
+        padding: 40px 20px; /* Menos margen lateral */
+    }
+}
+
