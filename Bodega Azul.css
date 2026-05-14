@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+
+* {
+    box-sizing: border-box;
+    /* Fundamental para responsive */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgba(114, 47, 55, 0.8);
+    font-family: "EB Garamond", serif;
+    overflow-x: hidden;
+    /* Evita scroll horizontal */
+}
+
+/* --- BUSCADOR --- */
+.group {
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 250px;
+    margin: 30px 30px 20px auto;
+}
+
+/* --- MENU DE NAVEGACIÓN --- */
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+    z-index: 1000;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 800;
+    padding: 8px 16px;
+    transition: all 0.4s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    position: sticky;
+    margin-top: 20px;
+}
+
+.nav a:hover {
+    transform: scale(1.1);
+    color: #ffcccb;
+}
+
+/* Contenedor de la grilla */
+.azul {
+ display: grid;
+    /* Crea columnas*/
+    grid-template-columns: repeat(3, 300px);  
+    column-gap: 50px; 
+    gap:40px;
+    justify-content: center;
+    
+}
+
+/* LA CARD: Tamaño inamovible */
+.card{
+    
+    width: 300px;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    /* Quitamos el borde negro y ponemos una sombra suave */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Oswald', sans-serif; /* Tipografía condensada recomendada */
+    
+}
+
+
+/* MARCO PARA LA IMAGEN: Evita que fotos grandes empujen el texto */
+.img-grid {
+    max-height: 300px;
+    max-width: 300px;
+    object-fit: contain;
+    /* Si la botella se ve chica, bajamos el padding */
+    padding: 5px;    
+}
+
+.contenedor-foto {
+    width: 100%;
+    height: 280px;
+    background-color: white; /* Gris muy clarito */
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    overflow: hidden;
+}
+
+.botellas {
+    padding: 15px;
+    text-align: center;
+    gap:300px;
+}
+
+.botellas p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: bold;
+    color: #000;
+}
+.carrito {
+    display: inline-block;
+    background-color: #ada4a4; /* Gris claro como el de 'Agregar' */
+    color: #333;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.4s ease;
+}
+
+.carrito:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.1);
+}
+
+.input {
+    height: 40px;
+    width: 100%;
+    padding: 0 1rem 0 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    background-color: #f3f3f4;
+    transition: .3s ease;
+}
+
+.icon {
+    position: absolute;
+    left: 10px;
+    fill: #9e9ea7;
+    width: 1rem;
+    height: 1rem;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+/* El contenedor de los círculos */
+.piedepagina {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 10% 30px 10%;
+    margin-top: 60px;
+    background: linear-gradient(rgba(114, 47, 55, 0.9), rgba(114, 47, 55, 0.9));
+    width: 100%;
+}
+
+/* El contenedor de los círculos */
+.card2 {
+    display: flex;
+    flex-direction: row; /* Asegura que estén uno al lado del otro */
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: auto; /* Quitamos el height fijo de 40px que los cortaba */
+    width: auto;
+    transform: none; /* Quitamos el translateY que los movía raro */
+    margin-bottom: 30px;
+    
+}
+
+/* Estilo para cada círculo de red social */
+.card2 .social-link1, .card2 .social-link2, .card2 .social-link4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;  /* Tamaño del círculo */
+    height: 50px; 
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+    text-decoration: none;
+    flex-shrink: 0; /* Que no se aplasten */
+}
+
+/* Tamaño de los iconos SVG dentro de los círculos */
+.card2 svg {
+    width: 24px;
+    height: 24px;
+    fill: #000000; /* Color inicial del icono */
+    transition: 0.3s;
+}
+
+/* --- EFECTOS HOVER (Tus colores originales) --- */
+
+/* Instagram */
+.card2 .social-link1:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    animation: bounce_613 0.4s linear;
+}
+
+/* Twitter */
+.card2 .social-link2:hover {
+    background-color: #00ccff;
+    animation: bounce_613 0.4s linear;
+}
+
+/* WhatsApp */
+.card2 .social-link4:hover {
+    background-color: #12a50b;
+    animation: bounce_613 0.4s linear;
+}
+
+/* Cambiar el icono a blanco cuando pasas el mouse */
+.card2 a:hover svg {
+    fill: #ffffff;
+}
+
+/* Copyright centrado */
+.copy {
+    color: #ffffff;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.9rem;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+/* Animación de rebote que ya tenías */
+@keyframes bounce_613 {
+    40% {
+        transform: scale(1.4);
+    }
+
+    60% {
+        transform: scale(0.8);
+    }
+
+    80% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
